@@ -10,6 +10,8 @@ Ensure your application is setup to use [Pebble Timeline](http://developer.getpe
 
 Copy the contents of `lib/reminder.js` to the top of your `pebble-app-js.js` file. In your ready event call `Reminder.remind({..params...})`
 
+*NOTE:* Reminder makes use of a timeline launchcode of 125435 to allow the user to open the app.
+
 A `Reminder` Object accepts the following parameters
 
 | Name                 | Type                                 | Argument   | Default                                              | Description                                                              |

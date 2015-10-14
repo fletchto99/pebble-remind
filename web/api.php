@@ -9,6 +9,8 @@ use TimelineAPI\PinIcon;
 use TimelineAPI\PinReminder;
 use TimelineAPI\Timeline;
 use TimelineAPI\PebbleColour;
+use TimelineAPI\PinAction;
+use TimelineAPI\PinActionType;
 
 $params = null;
 if (count($_POST) == 0) {
@@ -33,5 +35,6 @@ function pushReminderPin($appname, $usertoken, $time, $message) {
     $reminder = new PinReminder($reminderlayout, (new DateTime('now'))-> add(new DateInterval($time)));
     $pin = new Pin('reminder-'. $usertoken, (new DateTime('now'))->add(new DateInterval($time))->add(new DateInterval('PT5M')), $pinLayout);
     $pin -> addReminder($reminder);
+    $pin->addAction(new PinAction('Open ' . $appname, 125436, PinActionType::OPEN_WATCH_APP));
     Timeline::pushPin($usertoken, $pin);
 }
