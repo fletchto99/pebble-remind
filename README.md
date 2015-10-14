@@ -14,9 +14,9 @@ A `Reminder` Object accepts the following parameters
 
 | Name                 | Type                                 | Argument   | Default                                              | Description                                                              |
 | ----                 | :----:                               | :--------: | ---------                                            | -------------                                                            |
-| `app`                | string                               | (required) |                                                      | The ID that represents the pin                                           |
-| `message`            | string                               | (optional) | Please give %app% a heart if you like it! Thanks!    | The UTC Datetime of the event                                            |
-| `time`               | PHP DateInterval formatted string    | (optional) | 1 Day                                                | The description of the values of the pin                                 |
+| `app`                | string                               | (required) |                                                      | The name of your app                                          |
+| `message`            | string                               | (optional) | Please give %app% a heart if you like it! Thanks!    | The message to send your users                                |
+| `time`               | PHP DateInterval formatted string    | (optional) | 1 Day                                                | The time to wait before the reminder is shown                 |
 
 Example:
 ```js
