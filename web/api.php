@@ -18,8 +18,8 @@ if (count($_POST) == 0) {
 }
 
 if ($params !== null) {
-    $time = isset($params['time']) ? $params['time'] : 'P1D';
-    $message = isset($params['message']) ? $params['message'] : 'Please give ' . $params['app'] . ' a heart if you like it! Thanks';
+    $time = isset($params['time']) && strlen($params['time']) > 0 ? $params['time'] : 'P1D';
+    $message = isset($params['message']) && strlen($params['message']) > 0 ? $params['message'] : 'Please give ' . $params['app'] . ' a heart if you like it! Thanks';
     pushReminderPin($params['app'], $params['usertoken'], $time, $message);
     echo json_encode(['status' => 0, 'message' => 'Reminder sent successfully!']);
 } else {
@@ -30,8 +30,8 @@ function pushReminderPin($appname, $usertoken, $time, $message) {
     date_default_timezone_set('UTC');
     $reminderlayout = new PinLayout(PinLayoutType::GENERIC_REMINDER, $appname, null, null, $message, PinIcon::NOTIFICATION_FLAG);
     $pinLayout = new PinLayout(PinLayoutType::GENERIC_PIN, $appname, null, null, $message, PinIcon::GENERIC_CONFIRMATION, PinIcon::GENERIC_CONFIRMATION, PinIcon:: GENERIC_CONFIRMATION, PebbleColour::WHITE, PebbleColour::ORANGE);
-    $reminder = new PinReminder($reminderlayout, (new DateTime('now'))-> add(new DateInterval($time))->add(new DateInterval('PT10M')));
-    $pin = new Pin('reminder-'. $usertoken, (new DateTime('now')) -> add(new DateInterval($time)), $pinLayout);
+    $reminder = new PinReminder($reminderlayout, (new DateTime('now'))-> add(new DateInterval($time)));
+    $pin = new Pin('reminder-'. $usertoken, (new DateTime('now'))->add(new DateInterval($time))->add(new DateInterval('PT5M')), $pinLayout);
     $pin -> addReminder($reminder);
     Timeline::pushPin($usertoken, $pin);
 }
