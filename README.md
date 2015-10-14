@@ -8,7 +8,7 @@ Remind is a simple library to remind your users to give your app a heart. A day 
 
 Ensure your application is setup to use [Pebble Timeline](http://developer.getpebble.com/guides/timeline/timeline-enabling/)
 
-Copy the contents of `lib/reminder.js` to the top of your `pebble-app-js.js` file. In your ready event call `Reminder.remind(<app name>)`
+Copy the contents of `lib/reminder.js` to the top of your `pebble-app-js.js` file. In your ready event call `Reminder.remind({..params...})`
 
 A `Reminder` Object accepts the following parameters
 
